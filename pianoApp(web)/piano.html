@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./piano.css">
+    <title>Piano home</title>
+</head>
+<body>
+    <div class="piano">
+        <div class="key black" data-note="Cs"></div>
+        <div class="key white" data-note="C"></div>
+        <div class="key white" data-note="D"></div>
+        <div class="key black" data-note="Ds"></div>
+        <div class="key white" data-note="E"></div>
+        <div class="key white" data-note="C"></div>
+        <div class="key white" data-note="F"></div>
+        <div class="key black" data-note="Fs"></div>
+        <div class="key white" data-note="G"></div>
+        <div class="key black" data-note="Gs"></div>
+        <div class="key white" data-note="A"></div>
+        <div class="key black" data-note="As"></div>
+        <div class="key white" data-note="B"></div>
+    </div>
+
+    <audio src="https://nemo0.github.io/js-piano/notes/C4.mp3" id="C"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/Cs4.mp3" id="Cs"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/D4.mp3" id="D"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/Ds4.mp3" id="Ds"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/E4.mp3" id="E"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/F4.mp3" id="F"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/Fs4.mp3" id="Fs"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/G4.mp3" id="G"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/Gs4.mp3" id="Gs"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/A4.mp3" id="A"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/As4.mp3" id="As"></audio>
+    <audio src="https://nemo0.github.io/js-piano/notes/B4.mp3" id="B"></audio>
+
+    <script>
+        const keys = document.querySelectorAll(".key");
+        //selecting all the keys in the document
+//--------------------------------------------------------
+        //selecting the white and black keys
+        const regulars = document.querySelectorAll(".key.white");
+        const sharps = document.querySelectorAll('.key.black');
+
+        //looping and binding the click events to the notes .
+        keys.forEach((key) => {
+            key.addEventListener('click', () => playNote(key));
+        });
+
+        //playNote function
+//it is returning the note depending on the key pressed
+        let playNote = (key) => {
+            const noteSound = document.getElementById(key.dataset.note);
+            noteSound.currentTime = 0;
+            noteSound.play();
+            key.classList.add('active');
+            noteSound.addEventListener('ended', () =>{
+                key.classList.remove('active');
+            });
+        };
+    </script>
+</body>
+</html>
